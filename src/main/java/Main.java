@@ -1,3 +1,4 @@
+import business.LogProcessor;
 import com.google.gson.*;
 import dto.HolidayWrapper;
 import dto.WorkLogWrapper;
@@ -25,8 +26,9 @@ public class Main {
         final String jsonTextHolidays = FileReaderHelper.readFileFromResources(args[1]);
         final WorkLogWrapper workLogs  = gson.fromJson(jsonTextLogs, WorkLogWrapper.class);
         final HolidayWrapper holidays = gson.fromJson(jsonTextHolidays, HolidayWrapper.class);
-        System.out.println(workLogs);
-        System.out.println(holidays);
+        final LogProcessor processor = new LogProcessor();
+
+        processor.processWorkLogs(workLogs);
     }
 
 }
