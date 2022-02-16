@@ -1,7 +1,14 @@
 {
-    "holiday": {
-        "user-1": ["2021-11-28"],
-        "user-2": []
+  "holiday": [
+    {
+      "author": "user-1",
+      "holidays": [
+        "2021-11-28"
+      ]
+    },
+    {
+      "author": "user-2",
+      "holidays": []
     }
+  ]
 }
-
