@@ -2,6 +2,8 @@ package business;
 
 import dto.*;
 import helper.DateHelper;
+import helper.FileHelper;
+import helper.JsonHelper;
 
 import java.util.List;
 import java.util.Set;
@@ -12,7 +14,8 @@ public class LogProcessor {
     public void processWorkLogs(final WorkLogWrapper workLog) {
         final List<UserLog> userLogs = getUserLogs(workLog);
         final List<WeekLog> weekLogs = getWeekLogs(workLog);
-
+        FileHelper.writeFile("user_logs", JsonHelper.jsonObjectToText(userLogs));
+        FileHelper.writeFile("week_logs", JsonHelper.jsonObjectToText(weekLogs));
         System.out.println(userLogs);
         System.out.println(weekLogs);
     }
