@@ -27,12 +27,4 @@ public class WeekLog {
     public void setEntries(List<WorkLogEntry> entries) {
         this.entries = entries;
     }
-
-    @Override
-    public String toString() {
-        return "WeekLog{" +
-                "weekOfYear=" + weekOfYear +
-                ", entries=" + entries +
-                '}';
-    }
 }
