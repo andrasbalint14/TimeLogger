@@ -6,7 +6,7 @@ public class WorkLogEntry {
 
     private Integer id;
     private String comment;
-    private Integer timeSpent;
+    private Long timeSpent;
     private String author;
     private String authorFullName;
     private LocalDateTime created;
@@ -31,11 +31,11 @@ public class WorkLogEntry {
         this.comment = comment;
     }
 
-    public Integer getTimeSpent() {
+    public Long getTimeSpent() {
         return timeSpent;
     }
 
-    public void setTimeSpent(Integer timeSpent) {
+    public void setTimeSpent(Long timeSpent) {
         this.timeSpent = timeSpent;
     }
 

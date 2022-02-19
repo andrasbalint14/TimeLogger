@@ -65,12 +65,12 @@ public class LogProcessor {
         ).collect(Collectors.toList());
     }
 
-    private ResultWithPercentage calculateComparedPercentageOf32WorkingHours(final UserWeekLog userWeekLog) {
+    public ResultWithPercentage calculateComparedPercentageOf32WorkingHours(final UserWeekLog userWeekLog) {
 
         final ResultWithPercentage result = new ResultWithPercentage(userWeekLog.getUserId());
         userWeekLog.getWeekLogs().forEach(weekLog -> {
-            final Integer timeSpentOnWeekInSeconds = weekLog.getEntries().stream().map(WorkLogEntry::getTimeSpent)
-                    .reduce(0, (a, b) -> a + b);
+            final Long timeSpentOnWeekInSeconds = weekLog.getEntries().stream().map(WorkLogEntry::getTimeSpent)
+                    .reduce(0L, (a, b) -> a + b);
             final Float timeSpentPercentage = timeSpentOnWeekInSeconds / HOURS_32_IN_SECONDS * 100;
             result.addWeekPercentages(new WeekPercentage(weekLog.getWeekOfYear(), timeSpentPercentage));
         });
