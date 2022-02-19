@@ -1,0 +1,46 @@
+[
+  {
+    "userId": "user-1",
+    "weekPercentages": [
+      {
+        "week": "2021-49",
+        "percentage": 25.78125
+      },
+      {
+        "week": "2021-48",
+        "percentage": 5.46875
+      },
+      {
+        "week": "2021-50",
+        "percentage": 8.59375
+      }
+    ]
+  },
+  {
+    "userId": "user-4",
+    "weekPercentages": [
+      {
+        "week": "2021-49",
+        "percentage": 1.5625
+      }
+    ]
+  },
+  {
+    "userId": "user-3",
+    "weekPercentages": [
+      {
+        "week": "2021-48",
+        "percentage": 12.5
+      }
+    ]
+  },
+  {
+    "userId": "user-2",
+    "weekPercentages": [
+      {
+        "week": "2021-49",
+        "percentage": 1.5625
+      }
+    ]
+  }
+]

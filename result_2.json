@@ -1,0 +1,18 @@
+[
+  {
+    "userId": "user-1",
+    "percentage": 100.0
+  },
+  {
+    "userId": "user-4",
+    "percentage": 100.0
+  },
+  {
+    "userId": "user-3",
+    "percentage": 50.0
+  },
+  {
+    "userId": "user-2",
+    "percentage": 100.0
+  }
+]

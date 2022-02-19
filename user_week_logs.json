@@ -1,0 +1,184 @@
+[
+  {
+    "userId": "user-1",
+    "weekLogs": [
+      {
+        "weekOfYear": "2021-49",
+        "entries": [
+          {
+            "id": 114366,
+            "comment": "provider",
+            "timeSpent": 9000,
+            "author": "user-1",
+            "authorFullName": "Akos",
+            "created": 1639040029,
+            "startDate": 1638954900,
+            "updateAuthor": "user-1",
+            "updateAuthorFullName": "Akos",
+            "updated": 1639040029
+          },
+          {
+            "id": 114364,
+            "comment": "event hub",
+            "timeSpent": 13500,
+            "author": "user-1",
+            "authorFullName": "Akos",
+            "created": 1639040014,
+            "startDate": 1638968400,
+            "updateAuthor": "user-1",
+            "updateAuthorFullName": "Akos",
+            "updated": 1639040014
+          },
+          {
+            "id": 114445,
+            "comment": "coding",
+            "timeSpent": 5400,
+            "author": "user-1",
+            "authorFullName": "Akos",
+            "created": 1639123203,
+            "startDate": 1639061100,
+            "updateAuthor": "user-1",
+            "updateAuthorFullName": "Akos",
+            "updated": 1639123203
+          },
+          {
+            "id": 114395,
+            "comment": "#workshop",
+            "timeSpent": 1800,
+            "author": "user-1",
+            "authorFullName": "Akos",
+            "created": 1639053179,
+            "startDate": 1639051200,
+            "updateAuthor": "user-1",
+            "updateAuthorFullName": "Akos",
+            "updated": 1639053179
+          }
+        ]
+      },
+      {
+        "weekOfYear": "2021-48",
+        "entries": [
+          {
+            "id": 113618,
+            "comment": "",
+            "timeSpent": 2700,
+            "author": "user-1",
+            "authorFullName": "Akos",
+            "created": 1638187046,
+            "startDate": 1638178200,
+            "updateAuthor": "user-1",
+            "updateAuthorFullName": "Akos",
+            "updated": 1638187046
+          },
+          {
+            "id": 113909,
+            "comment": "#coding",
+            "timeSpent": 3600,
+            "author": "user-1",
+            "authorFullName": "Akos",
+            "created": 1638456868,
+            "startDate": 1638446400,
+            "updateAuthor": "user-1",
+            "updateAuthorFullName": "Akos",
+            "updated": 1638456868
+          }
+        ]
+      },
+      {
+        "weekOfYear": "2021-50",
+        "entries": [
+          {
+            "id": 114574,
+            "comment": "poc",
+            "timeSpent": 9900,
+            "author": "user-1",
+            "authorFullName": "Akos",
+            "created": 1639466641,
+            "startDate": 1639404000,
+            "updateAuthor": "user-1",
+            "updateAuthorFullName": "Akos",
+            "updated": 1639466641
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "userId": "user-4",
+    "weekLogs": [
+      {
+        "weekOfYear": "2021-49",
+        "entries": [
+          {
+            "id": 114439,
+            "comment": "#meeting",
+            "timeSpent": 1800,
+            "author": "user-4",
+            "authorFullName": "Krisz",
+            "created": 1639069441,
+            "startDate": 1639069380,
+            "updateAuthor": "user-4",
+            "updateAuthorFullName": "Krisz",
+            "updated": 1639069441
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "userId": "user-3",
+    "weekLogs": [
+      {
+        "weekOfYear": "2021-48",
+        "entries": [
+          {
+            "id": 113743,
+            "comment": "",
+            "timeSpent": 3600,
+            "author": "user-3",
+            "authorFullName": "Norbi",
+            "created": 1638350179,
+            "startDate": 1638349140,
+            "updateAuthor": "user-3",
+            "updateAuthorFullName": "Norbi",
+            "updated": 1638350179
+          },
+          {
+            "id": 114165,
+            "comment": "",
+            "timeSpent": 10800,
+            "author": "user-3",
+            "authorFullName": "Norbi",
+            "created": 1638862879,
+            "startDate": 1638430860,
+            "updateAuthor": "user-3",
+            "updateAuthorFullName": "Norbi",
+            "updated": 1638862879
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "userId": "user-2",
+    "weekLogs": [
+      {
+        "weekOfYear": "2021-49",
+        "entries": [
+          {
+            "id": 114207,
+            "comment": "#search",
+            "timeSpent": 1800,
+            "author": "user-2",
+            "authorFullName": "Gabor",
+            "created": 1638888066,
+            "startDate": 1638869400,
+            "updateAuthor": "user-2",
+            "updateAuthorFullName": "Gabor",
+            "updated": 1638888066
+          }
+        ]
+      }
+    ]
+  }
+]
