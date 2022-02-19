@@ -13,7 +13,7 @@ public class Main {
         final WorkLogWrapper workLogs  = (WorkLogWrapper) JsonHelper.jsonTextToObject(jsonTextLogs, WorkLogWrapper.class);
         final HolidayWrapper holidays = (HolidayWrapper) JsonHelper.jsonTextToObject(jsonTextHolidays, HolidayWrapper.class);
         final LogProcessor processor = new LogProcessor();
-        processor.processWorkLogs(workLogs);
+        processor.processWorkLogs(workLogs, holidays);
     }
 
 }

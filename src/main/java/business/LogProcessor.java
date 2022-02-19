@@ -6,17 +6,18 @@ import helper.FileHelper;
 import helper.JsonHelper;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LogProcessor {
 
     private static final Float HOURS_32_IN_SECONDS = 115200F;
+    private static final LocalTime RECORDING_DEADLINE = LocalTime.of(10, 0);
 
-    public void processWorkLogs(final WorkLogWrapper workLog) {
+    public void processWorkLogs(final WorkLogWrapper workLog, final HolidayWrapper holidays) {
         final List<UserLog> userLogs = getUserLogs(workLog);
         final List<UserWeekLog> userWeekWeekLogs = userLogs.stream()
                 .map(userLog -> this.getWeekLogs(userLog))
@@ -24,7 +25,11 @@ public class LogProcessor {
         final List<ResultWithPercentage> result1 = userWeekWeekLogs.stream()
                 .map(userWeekLog -> calculateComparedPercentageOf32WorkingHours(userWeekLog)).collect(Collectors.toList());
         final List<ResultRecordingTime> result2 = userWeekWeekLogs.stream()
-                .map(userWeekLog -> calculateRecordedHoursUntilMorning(userWeekLog)).collect(Collectors.toList());
+                .map(userWeekLog -> calculateRecordedHoursUntilMorning(userWeekLog,
+                        holidays.getHoliday().stream()
+                                .filter(userHoliday -> userHoliday.getAuthor().equals(userWeekLog.getUserId()))
+                                .findFirst())).collect(Collectors.toList());
+
         FileHelper.writeFile("user_week_logs", JsonHelper.jsonObjectToText(userWeekWeekLogs));
         FileHelper.writeFile("result_1", JsonHelper.jsonObjectToText(result1));
         FileHelper.writeFile("result_2", JsonHelper.jsonObjectToText(result2));
@@ -32,7 +37,7 @@ public class LogProcessor {
 
     private UserWeekLog getWeekLogs(final UserLog userLog) {
         // collecting all weeks where entries were made
-        final Set<Integer> weekNumbers = userLog.getEntries().stream()
+        final Set<String> weekNumbers = userLog.getEntries().stream()
                 .map(entry -> DateHelper.getWeekOfYearFromLocalDateTime(entry.getStartDate())).collect(Collectors.toSet());
 
         // map all log entries to weeks and users
@@ -72,17 +77,39 @@ public class LogProcessor {
         return result;
     }
 
-    private ResultRecordingTime calculateRecordedHoursUntilMorning(final UserWeekLog userWeekLog) {
+    public ResultRecordingTime calculateRecordedHoursUntilMorning(final UserWeekLog userWeekLog, final Optional<UserHoliday> userHolidays) {
         final List<WorkLogEntry> workLogEntries = userWeekLog.getWeekLogs().stream().map(WeekLog::getEntries).flatMap(List::stream).collect(Collectors.toList());
-        final List<WorkLogEntry> entriesRecordedInTime = workLogEntries.stream().filter(workLogEntry -> wasRecordedInTime(workLogEntry)).collect(Collectors.toList());
+        final List<WorkLogEntry> entriesRecordedInTime = workLogEntries.stream().filter(workLogEntry -> wasRecordedInTime(workLogEntry, userHolidays)).collect(Collectors.toList());
         final Float percentage = workLogEntries.isEmpty() ? 0F : Integer.valueOf(entriesRecordedInTime.size()).floatValue() / Integer.valueOf(workLogEntries.size()).floatValue() * 100;
         return new ResultRecordingTime(userWeekLog.getUserId(), percentage);
     }
 
-    private boolean wasRecordedInTime(final WorkLogEntry entry) {
-        final Integer daysToAdd = entry.getStartDate().getDayOfWeek() == DayOfWeek.FRIDAY ? 3 : 1;
-        final LocalDateTime recordDeadline = entry.getStartDate().plusDays(daysToAdd).with(LocalTime.of(10, 0));
+    public boolean wasRecordedInTime(final WorkLogEntry entry, final Optional<UserHoliday> userHolidays) {
+        final Long daysToAdd = calculateDaysToAdd(entry, userHolidays);
+        final LocalDateTime recordDeadline = entry.getStartDate().plusDays(daysToAdd).with(RECORDING_DEADLINE);
         return entry.getCreated().isBefore(recordDeadline);
     }
 
+    public Long calculateDaysToAdd(final WorkLogEntry entry, final Optional<UserHoliday> userHolidays) {
+
+        // no holidays recorded then just check if it is Friday
+        if (!userHolidays.isPresent()) {
+            return entry.getStartDate().getDayOfWeek() == DayOfWeek.FRIDAY ? 3L : 1L;
+        }
+        final UserHoliday userHoliday = userHolidays.get();
+        LocalDate nextWorkingDay = null;
+        long daysToAdd = entry.getStartDate().getDayOfWeek() == DayOfWeek.FRIDAY ? 3L : 1L;
+        // find next working day which is not holiday and not weekend
+        while (nextWorkingDay == null) {
+            LocalDate date = entry.getStartDate().plusDays(daysToAdd).toLocalDate();
+            if (!userHoliday.getHolidays().contains(date)
+                    && date.getDayOfWeek() != DayOfWeek.SATURDAY
+                    && date.getDayOfWeek() != DayOfWeek.SUNDAY) {
+                nextWorkingDay = date;
+            } else {
+                daysToAdd++;
+            }
+        }
+        return daysToAdd;
+    }
 }

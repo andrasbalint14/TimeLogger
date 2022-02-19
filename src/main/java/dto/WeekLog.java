@@ -4,19 +4,19 @@ import java.util.List;
 
 public class WeekLog {
 
-    private Integer weekOfYear;
+    private String weekOfYear;
     private List<WorkLogEntry> entries;
 
-    public WeekLog(Integer weekOfYear, List<WorkLogEntry> entries) {
+    public WeekLog(String weekOfYear, List<WorkLogEntry> entries) {
         this.weekOfYear = weekOfYear;
         this.entries = entries;
     }
 
-    public Integer getWeekOfYear() {
+    public String getWeekOfYear() {
         return weekOfYear;
     }
 
-    public void setWeekOfYear(Integer weekOfYear) {
+    public void setWeekOfYear(String weekOfYear) {
         this.weekOfYear = weekOfYear;
     }
 

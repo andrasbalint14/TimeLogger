@@ -2,19 +2,19 @@ package dto;
 
 public class WeekPercentage {
 
-    private Integer week;
+    private String week;
     private Float percentage;
 
-    public WeekPercentage(Integer week, Float percentage) {
+    public WeekPercentage(String week, Float percentage) {
         this.week = week;
         this.percentage = percentage;
     }
 
-    public Integer getWeek() {
+    public String getWeek() {
         return week;
     }
 
-    public void setWeek(Integer week) {
+    public void setWeek(String week) {
         this.week = week;
     }
 
